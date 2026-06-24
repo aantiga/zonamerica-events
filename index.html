@@ -50,9 +50,22 @@ h2{font-size:18px;font-weight:600}
 label{display:block;font-size:13px;font-weight:500;margin-bottom:6px}
 .center{text-align:center}
 .full-page{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1D1A;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1D1A;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;z-index:99;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90%;text-align:center}
 .toast.show{opacity:1}
-@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.detail-stats{grid-template-columns:1fr}.row-2,.row-2-1{grid-template-columns:1fr}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{min-width:560px}
+@media(max-width:760px){
+  .nav{height:auto;padding:10px 16px;justify-content:center}
+  .nav .tabs{order:3;width:100%;justify-content:center}
+  .container{padding:20px 16px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .detail-stats{grid-template-columns:1fr}
+  .row-2,.row-2-1{grid-template-columns:1fr}
+  .tab{padding:8px 14px;font-size:13px}
+  h1{font-size:20px}
+  .link-box{flex-direction:column;align-items:stretch}
+  .link-box .btn{width:100%}
+}
 </style>
 </head>
 <body>
@@ -105,9 +118,9 @@ function renderDashboard(){
   var h="<div class='container'><div class='mb-24'><h1>Eventos</h1><p class='text-muted' style='font-size:14px;margin-top:4px'>Gesti\u00f3n de eventos y acreditaciones para Zonamerica</p></div>";
   h+="<div class='stats'><div class='stat'><div class='stat-label'>Eventos</div><div class='stat-value'>"+total+"</div></div><div class='stat'><div class='stat-label'>Activos</div><div class='stat-value'>"+active+"</div></div><div class='stat'><div class='stat-label'>Invitados</div><div class='stat-value'>"+guests+"</div></div><div class='stat'><div class='stat-label'>Confirmados</div><div class='stat-value'>"+conf+"</div></div></div>";
   h+="<div class='card'><div class='card-header'><span style='font-size:14px;font-weight:600'>Todos los eventos</span><button class='btn' onclick='nav(\u0022create\u0022)'>+ Nuevo evento</button></div>";
-  h+="<table><thead><tr><th>Evento</th><th>Fecha</th><th>Organizador</th><th>Invitados</th><th>Estado</th></tr></thead><tbody>";
+  h+="<div class='table-wrap'><table><thead><tr><th>Evento</th><th>Fecha</th><th>Organizador</th><th>Invitados</th><th>Estado</th></tr></thead><tbody>";
   EVENTS.forEach(function(e){h+="<tr style='cursor:pointer' onclick='sel("+e.id+")'><td><div style='font-weight:500'>"+e.name+"</div><div class='text-light' style='font-size:12px;margin-top:2px'>"+e.location+"</div></td><td class='text-muted'>"+fmtDate(e.date)+" \u00b7 "+e.time+"</td><td>"+orgBadge(e)+"</td><td class='text-muted'>"+e.guests.filter(function(g){return g.status==="confirmed"}).length+"/"+e.guests.length+"</td><td>"+badge(e.status)+"</td></tr>";});
-  h+="</tbody></table></div></div>";return h;
+  h+="</tbody></table></div></div></div>";return h;
 }
 function renderDetail(){
   var e=evById(selId);if(!e)return "";
@@ -119,7 +132,7 @@ function renderDetail(){
   h+="<div class='detail-stats'><div class='stat'><div class='stat-label'>Capacidad</div><div class='stat-value' style='font-size:22px'>"+e.guests.length+" / "+e.capacity+"</div></div><div class='stat'><div class='stat-label'>Confirmados</div><div class='stat-value' style='font-size:22px'>"+conf+"</div></div><div class='stat'><div class='stat-label'>Pendientes</div><div class='stat-value' style='font-size:22px'>"+pend+"</div></div></div>";
   h+="<div class='card'><div class='card-header'><span style='font-weight:600'>Invitados registrados</span></div>";
   if(e.guests.length===0){h+="<div style='padding:40px;text-align:center' class='text-muted'>A\u00fan no hay invitados registrados. Compart\u00ed el link de arriba.</div>";}
-  else{h+="<table><thead><tr><th>Nombre</th><th>C\u00e9dula</th><th>Empresa</th><th>Email</th><th>Estado</th></tr></thead><tbody>";e.guests.forEach(function(g){h+="<tr><td style='font-weight:500'>"+g.name+"</td><td class='text-muted' style='font-family:monospace;font-size:12px'>"+g.ci+"</td><td class='text-muted'>"+g.company+"</td><td class='text-muted'>"+g.email+"</td><td>"+badge(g.status)+"</td></tr>";});h+="</tbody></table>";}
+  else{h+="<div class='table-wrap'><table><thead><tr><th>Nombre</th><th>C\u00e9dula</th><th>Empresa</th><th>Email</th><th>Estado</th></tr></thead><tbody>";e.guests.forEach(function(g){h+="<tr><td style='font-weight:500'>"+g.name+"</td><td class='text-muted' style='font-family:monospace;font-size:12px'>"+g.ci+"</td><td class='text-muted'>"+g.company+"</td><td class='text-muted'>"+g.email+"</td><td>"+badge(g.status)+"</td></tr>";});h+="</tbody></table></div>";}
   h+="</div></div>";return h;
 }
 function renderCreate(){
