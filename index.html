@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Zonamerica Events</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#FAFAF8}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;border-bottom:1px solid #E2E3DE;background:#fff;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:32px;height:32px;border-radius:8px;background:#0B6E4F;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px}
+.container{max-width:960px;margin:0 auto;padding:28px 32px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat{padding:16px 18px;background:#fff;border:1px solid #EEEFEB;border-radius:12px}
+.stat-label{font-size:12px;color:#8A8E8A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.stat-value{font-size:26px;font-weight:600;color:#1A1D1A}
+.card{background:#fff;border:1px solid #EEEFEB;border-radius:12px;overflow:hidden}
+.card-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #EEEFEB}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:10px 18px;text-align:left;font-weight:500;color:#5C615C;font-size:12px;background:#F3F4F2}
+td{padding:12px 18px;border-bottom:1px solid #EEEFEB}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.badge-green{background:#E8F8EF;color:#27AE60}
+.badge-orange{background:#FEF3E6;color:#D97B2B}
+.badge-teal{background:#E8F5EF;color:#0B6E4F}
+.badge-gray{background:#F3F4F2;color:#5C615C}
+.badge-ext{background:#FEF3E6;color:#D97B2B;font-size:12px;padding:2px 8px;border-radius:6px}
+.badge-int{background:#E8F5EF;color:#0B6E4F;font-size:12px;padding:2px 8px;border-radius:6px}
+.btn{padding:8px 16px;border-radius:8px;border:none;background:#0B6E4F;color:#fff;font-size:13px;font-weight:500;cursor:pointer}
+.btn-accent{background:#D97B2B}
+.link-box{display:flex;gap:12px;padding:16px 18px;background:#E8F5EF;border-radius:12px;margin-bottom:24px;align-items:center}
+.form-field{width:100%;padding:10px 14px;border-radius:8px;border:1px solid #E2E3DE;font-size:14px;outline:none}
+.text-muted{color:#5C615C}
+.text-light{color:#8A8E8A}
+.tabs{display:flex;gap:8px}
+.tab{padding:8px 20px;border-radius:8px;border:2px solid #E2E3DE;background:#fff;font-size:14px;font-weight:500;cursor:pointer;color:#5C615C}
+.tab.active{border-color:#0B6E4F;background:#E8F5EF;color:#094D38}
+h1{font-size:22px;font-weight:600;color:#1A1D1A}
+h2{font-size:18px;font-weight:600;color:#1A1D1A}
+.qr-box{padding:20px;background:#F3F4F2;border-radius:12px;display:inline-block}
+.confirm-card{width:400px;max-width:100%;background:#fff;border-radius:16px;padding:36px 32px;text-align:center;border:1px solid #EEEFEB}
+.success-icon{width:56px;height:56px;border-radius:50%;background:#E8F8EF;color:#27AE60;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px}
+.detail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.hidden{display:none}
+.row{display:grid;gap:12px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-2-1{grid-template-columns:2fr 1fr}
+.mb-16{margin-bottom:16px}
+.mb-18{margin-bottom:18px}
+.mb-24{margin-bottom:24px}
+label{display:block;font-size:13px;font-weight:500;color:#1A1D1A;margin-bottom:6px}
+.center{text-align:center}
+.full-page{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var EVENTS=[{id:1,name:"Forbes Uruguay \u2014 Future of Work 2026",date:"2026-06-25",time:"09:00",location:"Auditorio Principal",capacity:120,organizer:"Forbes Uruguay",orgType:"ext",status:"active",guests:[{name:"Mar\u00eda Garc\u00eda",ci:"4.567.890-1",email:"maria@gmail.com",company:"Globant",status:"confirmed"},{name:"Juan Rodr\u00edguez",ci:"3.456.789-2",email:"juan@mercadolibre.com",company:"MercadoLibre",status:"confirmed"},{name:"Ana Mart\u00ednez",ci:"5.678.901-3",email:"ana@dlocal.com",company:"dLocal",status:"pending"},{name:"Carlos L\u00f3pez",ci:"2.345.678-4",email:"carlos@pedidosya.com",company:"PedidosYa",status:"confirmed"},{name:"Luc\u00eda Fern\u00e1ndez",ci:"6.789.012-5",email:"lucia@tryolabs.com",company:"Tryolabs",status:"pending"}]},{id:2,name:"Tech Meetup \u2014 AI & Data",date:"2026-07-03",time:"18:30",location:"Sala de Eventos B",capacity:60,organizer:"Zonamerica",orgType:"int",status:"active",guests:[{name:"Pedro \u00c1lvarez",ci:"1.234.567-6",email:"pedro@gmail.com",company:"Freelance",status:"confirmed"},{name:"Sof\u00eda D\u00edaz",ci:"7.890.123-7",email:"sofia@ey.com",company:"EY",status:"confirmed"}]},{id:3,name:"Workshop Design Thinking",date:"2026-07-10",time:"14:00",location:"Cowork Space",capacity:25,organizer:"Zonamerica",orgType:"int",status:"draft",guests:[]}];
+var view="dashboard",selEvent=null,demoMode="admin";
+function badge(s){var m={confirmed:"badge-green",pending:"badge-orange",active:"badge-teal",draft:"badge-gray"};var l={confirmed:"Confirmado",pending:"Pendiente",active:"Activo",draft:"Borrador"};return "<span class='badge "+(m[s]||"badge-gray")+"'>"+(l[s]||s)+"</span>";}
+function orgBadge(e){return "<span class='"+(e.orgType==="ext"?"badge-ext":"badge-int")+"'>"+e.organizer+"</span>";}
+function makeQR(size){var svg="<svg width='"+size+"' height='"+size+"' viewBox='0 0 "+size+" "+size+"'><rect width='"+size+"' height='"+size+"' fill='white'/>";var g=15,cs=size/g;var seed=42;for(var r=0;r<g;r++)for(var c=0;c<g;c++){var fp=(r<4&&c<4)||(r<4&&c>g-5)||(r>g-5&&c<4);var fb=(r<5&&c<5)||(r<5&&c>g-6)||(r>g-6&&c<5);var fill=false;if(fp)fill=true;else if(fb)fill=r===0||r===4||r===g-5||c===0||c===4||c===g-5;else{seed=(seed*1103515245+12345)&0x7fffffff;fill=seed%3!==0;}if(fill)svg+="<rect x='"+(c*cs)+"' y='"+(r*cs)+"' width='"+cs+"' height='"+cs+"' fill='#1A1D1A'/>";}return svg+"</svg>";}
+function nav(v){view=v;selEvent=null;render();}
+function sel(i){selEvent=EVENTS[i];render();}
+function goGuest(){demoMode="guest";render();}
+function goAdmin(){demoMode="admin";view="dashboard";selEvent=null;render();}
+function fmtDate(d){return new Date(d).toLocaleDateString("es-UY",{day:"numeric",month:"short"});}
+function fmtDateLong(d){return new Date(d).toLocaleDateString("es-UY",{weekday:"long",day:"numeric",month:"long",year:"numeric"});}
+function render(){
+  var app=document.getElementById("app");
+  if(demoMode==="guest"){app.innerHTML=renderGuest();attachGuestEvents();return;}
+  var h="<div class='nav'><div class='logo'><div class='logo-icon'>ZA</div><span style='font-weight:600;font-size:15px'>Zonamerica Events</span></div>";
+  h+="<div class='tabs'><button class='tab "+(view==="dashboard"?"active":"")+"' onclick='nav(\u0022dashboard\u0022)'>Eventos</button><button class='tab "+(view==="create"?"active":"")+"' onclick='nav(\u0022create\u0022)'>Nuevo evento</button></div>";
+  h+="<div style='display:flex;align-items:center;gap:10px'><span class='text-muted' style='font-size:13px'>Zonamerica</span><div style='width:30px;height:30px;border-radius:50%;background:#E8F5EF;color:#0B6E4F;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600'>Z</div></div></div>";
+  if(view==="dashboard"&&!selEvent)h+=renderDashboard();
+  else if(view==="dashboard"&&selEvent)h+=renderDetail();
+  else if(view==="create")h+=renderCreate();
+  app.innerHTML=h;
+}
+function renderDashboard(){
+  var total=EVENTS.length,active=EVENTS.filter(function(e){return e.status==="active"}).length,guests=EVENTS.reduce(function(s,e){return s+e.guests.length},0),conf=EVENTS.reduce(function(s,e){return s+e.guests.filter(function(g){return g.status==="confirmed"}).length},0);
+  var h="<div class='container'><div class='mb-24'><h1>Eventos</h1><p class='text-muted' style='font-size:14px;margin-top:4px'>Gesti\u00f3n de eventos y acreditaciones para Zonamerica</p></div>";
+  h+="<div class='stats'><div class='stat'><div class='stat-label'>Eventos</div><div class='stat-value'>"+total+"</div></div><div class='stat'><div class='stat-label'>Activos</div><div class='stat-value'>"+active+"</div></div><div class='stat'><div class='stat-label'>Invitados</div><div class='stat-value'>"+guests+"</div></div><div class='stat'><div class='stat-label'>Confirmados</div><div class='stat-value'>"+conf+"</div></div></div>";
+  h+="<div class='card'><div class='card-header'><span style='font-size:14px;font-weight:600'>Todos los eventos</span><button class='btn' onclick='nav(\u0022create\u0022)'>+ Nuevo evento</button></div>";
+  h+="<table><thead><tr><th>Evento</th><th>Fecha</th><th>Organizador</th><th>Invitados</th><th>Estado</th></tr></thead><tbody>";
+  EVENTS.forEach(function(e,i){h+="<tr style='cursor:pointer' onclick='sel("+i+")'><td><div style='font-weight:500'>"+e.name+"</div><div class='text-light' style='font-size:12px;margin-top:2px'>"+e.location+"</div></td><td class='text-muted'>"+fmtDate(e.date)+" \u00b7 "+e.time+"</td><td>"+orgBadge(e)+"</td><td class='text-muted'>"+e.guests.filter(function(g){return g.status==="confirmed"}).length+"/"+e.guests.length+"</td><td>"+badge(e.status)+"</td></tr>";});
+  h+="</tbody></table></div></div>";return h;
+}
+function renderDetail(){
+  var e=selEvent,conf=e.guests.filter(function(g){return g.status==="confirmed"}).length,pend=e.guests.filter(function(g){return g.status==="pending"}).length;
+  var h="<div class='container'><button onclick='nav(\u0022dashboard\u0022)' style='padding:0;border:none;background:none;color:#5C615C;font-size:13px;cursor:pointer;margin-bottom:16px'>&#8592; Volver a eventos</button>";
+  h+="<div style='display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px'><div><div style='display:flex;align-items:center;gap:10px;margin-bottom:4px'><h2>"+e.name+"</h2>"+badge(e.status)+"</div><p class='text-muted' style='font-size:13px'>"+fmtDateLong(e.date)+" \u00b7 "+e.time+" \u00b7 "+e.location+"</p></div>"+orgBadge(e)+"</div>";
+  h+="<div class='link-box'><div style='flex:1'><div style='font-size:12px;font-weight:500;color:#094D38;margin-bottom:4px'>Link de registro para invitados</div><div style='font-size:13px;color:#0B6E4F;font-family:monospace'>https://events.zonamerica.com/registro/"+e.id+"</div></div><button class='btn'>Copiar link</button></div>";
+  h+="<div class='detail-stats'><div class='stat'><div class='stat-label'>Capacidad</div><div class='stat-value' style='font-size:22px'>"+e.guests.length+" / "+e.capacity+"</div></div><div class='stat'><div class='stat-label'>Confirmados</div><div class='stat-value' style='font-size:22px'>"+conf+"</div></div><div class='stat'><div class='stat-label'>Pendientes</div><div class='stat-value' style='font-size:22px'>"+pend+"</div></div></div>";
+  h+="<div class='card'><div class='card-header'><span style='font-weight:600'>Invitados registrados</span></div>";
+  if(e.guests.length===0){h+="<div style='padding:40px;text-align:center' class='text-muted'>A\u00fan no hay invitados registrados</div>";}
+  else{h+="<table><thead><tr><th>Nombre</th><th>C\u00e9dula</th><th>Empresa</th><th>Email</th><th>Estado</th></tr></thead><tbody>";e.guests.forEach(function(g){h+="<tr><td style='font-weight:500'>"+g.name+"</td><td class='text-muted' style='font-family:monospace;font-size:12px'>"+g.ci+"</td><td class='text-muted'>"+g.company+"</td><td class='text-muted'>"+g.email+"</td><td>"+badge(g.status)+"</td></tr>";});h+="</tbody></table>";}
+  h+="</div></div>";
+  h+="<div style='position:fixed;bottom:24px;right:24px'><button class='btn btn-accent' style='padding:10px 20px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.15)' onclick='goGuest()'>Ver como invitado &#8594;</button></div>";
+  return h;
+}
+function renderCreate(){
+  var h="<div class='container' style='max-width:580px'><button onclick='nav(\u0022dashboard\u0022)' style='padding:0;border:none;background:none;color:#5C615C;font-size:13px;cursor:pointer;margin-bottom:16px'>&#8592; Volver</button>";
+  h+="<h1 style='margin-bottom:4px'>Crear evento</h1><p class='text-muted' style='font-size:13px;margin-bottom:24px'>Configur\u00e1 los datos del evento. Los invitados se registrar\u00e1n v\u00eda el link p\u00fablico.</p>";
+  h+="<div class='card' style='padding:24px'><div class='mb-18'><label>Nombre del evento</label><input class='form-field' placeholder='Ej: Forbes Uruguay \u2014 Future of Work'></div>";
+  h+="<div class='row row-2 mb-18'><div><label>Fecha</label><input class='form-field' type='date'></div><div><label>Hora</label><input class='form-field' type='time'></div></div>";
+  h+="<div class='row row-2-1 mb-18'><div><label>Ubicaci\u00f3n</label><input class='form-field' placeholder='Auditorio Principal'></div><div><label>Capacidad</label><input class='form-field' type='number' placeholder='120'></div></div>";
+  h+="<div class='mb-18'><label>Tipo de organizador</label><div style='display:flex;gap:8px'><button class='tab active' style='flex:1'>Interno (Zonamerica)</button><button class='tab' style='flex:1'>Externo (otra empresa)</button></div></div>";
+  h+="<button class='btn' style='width:100%;padding:12px 0;font-size:14px;font-weight:600;border-radius:10px'>Crear evento</button></div></div>";
+  return h;
+}
+function renderGuest(){
+  var e=EVENTS[0];
+  var h="<div class='full-page' style='padding:20px'><div style='width:440px;max-width:100%'><div class='center mb-24'><div class='logo-icon' style='width:40px;height:40px;font-size:16px;border-radius:10px;margin:0 auto 12px;display:flex'>ZA</div><h2>"+e.name+"</h2><p class='text-muted' style='font-size:13px;margin-top:4px'>"+fmtDateLong(e.date)+" \u00b7 "+e.time+"</p><p class='text-light' style='font-size:13px;margin-top:2px'>"+e.location+" \u2014 Zonamerica</p></div>";
+  h+="<div class='card' style='padding:28px' id='reg-form'><h2 style='font-size:15px;margin-bottom:4px'>Registro de visitante</h2><p class='text-muted' style='font-size:12px;margin-bottom:20px'>Complet\u00e1 tus datos para acreditarte en el campus de Zonamerica.</p>";
+  h+="<div class='mb-16'><label>Nombre completo</label><input class='form-field' id='g-name' placeholder='Mar\u00eda Garc\u00eda'></div>";
+  h+="<div class='row row-2 mb-16'><div><label>C\u00e9dula de identidad</label><input class='form-field' id='g-ci' placeholder='1.234.567-8'></div><div><label>Celular</label><input class='form-field' placeholder='099 123 456'></div></div>";
+  h+="<div class='mb-16'><label>Email</label><input class='form-field' id='g-email' type='email' placeholder='maria@ejemplo.com'></div>";
+  h+="<div class='mb-24'><label>Empresa</label><input class='form-field' placeholder='Globant'></div>";
+  h+="<button class='btn' id='btn-register' style='width:100%;padding:12px 0;font-size:14px;font-weight:600;border-radius:10px'>Registrarme</button>";
+  h+="<p class='text-light center' style='font-size:11px;margin-top:14px'>Tus datos ser\u00e1n registrados como visitante en Zonamerica \u00fanicamente para este evento.</p></div>";
+  h+="<div id='reg-confirm' class='hidden'><div class='confirm-card'><div class='success-icon'>&#10003;</div><h2 style='font-size:20px;margin-bottom:6px'>Registro confirmado</h2><p class='text-muted' style='font-size:13px;margin-bottom:24px'>Tu acreditaci\u00f3n para ingresar a Zonamerica fue generada. Present\u00e1 este QR en la entrada el d\u00eda del evento.</p><div class='qr-box' style='margin-bottom:20px'>"+makeQR(140)+"</div><div style='font-size:13px;font-weight:500' id='conf-name'></div><div class='text-muted' style='font-size:12px'>"+e.name+"</div><div class='text-light' style='font-size:12px'>"+e.location+"</div></div></div>";
+  h+="<div class='center' style='margin-top:16px'><button onclick='goAdmin()' style='padding:6px 16px;border-radius:8px;border:1px solid #E2E3DE;background:none;color:#5C615C;font-size:12px;cursor:pointer'>&#8592; Volver al panel (demo)</button></div></div></div>";
+  return h;
+}
+function attachGuestEvents(){
+  setTimeout(function(){
+    var btn=document.getElementById("btn-register");
+    if(btn)btn.onclick=function(){
+      var name=document.getElementById("g-name").value||"Mar\u00eda Garc\u00eda";
+      document.getElementById("reg-form").classList.add("hidden");
+      document.getElementById("reg-confirm").classList.remove("hidden");
+      document.getElementById("conf-name").textContent=name;
+    };
+  },100);
+}
+render();
+</script>
+</body>
+</html>
